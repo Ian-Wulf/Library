@@ -56,6 +56,7 @@ function displayBooks() {
                         break;
                     case "pubDate":
                         property.setAttribute("id","pubDate");
+                        property.innerHTML = "RELEASE:"
                         value.setAttribute("id","pubDate-value");
                         break;
                     case "read":
@@ -82,3 +83,9 @@ addBook('Halo: First Strike','Eric Nylund','12-02-2003','read');
 addBook("Ender's Game",'Orson Scott Card','01-15-1985','read');
 
 displayBooks();
+
+const newBookButton = document.querySelector(".new-book");
+
+newBookButton.addEventListener('click', function() {
+    
+});

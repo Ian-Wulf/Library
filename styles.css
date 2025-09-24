@@ -5,8 +5,9 @@
 }
 
 body {
+    padding: 1rem;
     display: grid;
-    grid-template-rows: 1fr 1fr 5fr;
+    grid-template-rows: 3rem 3rem 5fr;
     gap: 1rem;
     justify-items: center;
 
@@ -14,11 +15,36 @@ body {
 
 .new-book {
     font-size: large;
+    border-radius: 5px;
     padding: 0rem 1rem;
+    height: 2rem;
+}
+
+.newbookform {
+    border: 1px solid black;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.newbookform div:nth-child(1), 
+.newbookform div:nth-child(2), 
+.newbookform div:nth-child(3) {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.newbookform div:nth-child(4) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
 }
 
 .grid {
     width: 80%;
+    padding: 1rem;
     display: grid; 
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -27,13 +53,14 @@ body {
 
 .bookCard {
     height: 200px;
-    border: 1px solid black; 
+    background-color: beige;
     border-radius: 5px;
-    box-shadow: 0 3px 3px gray;
-    padding: 1rem 0.8rem;
+    box-shadow: 1px 3px 3px rgb(58, 57, 57);
+    padding: 1.5rem 0.8rem;
 
 
     display: grid;
+    gap: 0.5rem;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
 }
@@ -41,6 +68,13 @@ body {
 .bookCard div {
     display: grid;
     grid-template-columns: 5rem 5fr;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
+.bookCard div p:first-child {
+    justify-self: start;
+}
+
+.bookCard div p:nth-child(2) {
+    padding-left: 0.5rem;
+}
