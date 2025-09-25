@@ -5,7 +5,7 @@ let body = document.querySelector("body");
 
 // Constructs each book
 function Book(title, author, pubDate, read) {
-    let id = crypto.randomUUID(); // unique identifier
+    this.id = crypto.randomUUID(); // unique identifier
     this.title = title;
     this.author = author;
     this.pubDate = pubDate;
@@ -14,16 +14,10 @@ function Book(title, author, pubDate, read) {
 
 // Toggle 'read' status of a book
 Book.prototype.toggleRead = function() {
-    let changeReadBtn = document.getElementById("toggle-read");
-    let readValue = document.querySelector(".read-value");
     if(this.read === "read") {
         this.read = "not read";
-        readValue.innerHTML = "UNREAD";
-        changeReadBtn.innerHTML = "read";
     } else {
         this.read = "read";
-        readValue.innerHTML = "READ";
-        changeReadBtn.innerHTML = "unread";
     }
 };
 
@@ -32,8 +26,10 @@ function addBook(title, author, pubDate, read) {
     myLibrary.push(newBook);
 }
 
-function removeBook() {
-
+function removeBook(bookID) {
+    let booktoRemove = myLibrary.findIndex(book => book.id === bookID);
+    myLibrary.splice(booktoRemove, 1);
+    displayBooks();
 }
 
 function displayBooks() {
@@ -49,11 +45,11 @@ function displayBooks() {
     
     // Add books
     myLibrary.forEach(function(book) {
-        // console.log(book)
+        
         let card = document.createElement("div");
         card.classList.add("bookCard");
         for(const key in book) {
-            if(book.hasOwnProperty(key)) {
+            if(book.hasOwnProperty(key) && key !== "id") {
                 let info = document.createElement("div");
                 let property = document.createElement("p");
                 let value = document.createElement("p");
@@ -102,6 +98,7 @@ function displayBooks() {
 
         changeRead.addEventListener("click", function() {
             book.toggleRead();
+            displayBooks();
         });
 
         lastRow.appendChild(changeRead);
@@ -109,7 +106,12 @@ function displayBooks() {
         let removeBtn = document.createElement("button");
         removeBtn.setAttribute("type", "button");
         removeBtn.setAttribute("id", "remove");
-        removeBtn.innerHTML = "remove book";
+        removeBtn.innerHTML = "remove";
+
+        removeBtn.addEventListener("click", function() {
+            removeBook(book.id);
+        });
+
         lastRow.appendChild(removeBtn);
 
         grid.appendChild(card);
@@ -136,6 +138,8 @@ newBookButton.addEventListener('click', function() {
 });
 
 submitBtn.addEventListener('click', function() {
+    let form = document.querySelector(".newbookform");
+
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pubDate = document.getElementById("pubDate").value;
@@ -147,7 +151,7 @@ submitBtn.addEventListener('click', function() {
     if (read.checked) {
         readStatus = "read";
     } else if (notRead.checked) {
-        readStatus = "not-read";
+        readStatus = "not read";
     } 
 
     addBook(title, author, pubDate, readStatus);
@@ -155,4 +159,5 @@ submitBtn.addEventListener('click', function() {
 
     dialog.close();
     dialog.classList.remove("dialog");
+    form.reset();
 });
