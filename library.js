@@ -14,17 +14,26 @@ function Book(title, author, pubDate, read) {
 
 // Toggle 'read' status of a book
 Book.prototype.toggleRead = function() {
+    let changeReadBtn = document.getElementById("toggle-read");
+    let readValue = document.querySelector(".read-value");
     if(this.read === "read") {
         this.read = "not read";
+        readValue.innerHTML = "UNREAD";
+        changeReadBtn.innerHTML = "read";
     } else {
         this.read = "read";
+        readValue.innerHTML = "READ";
+        changeReadBtn.innerHTML = "unread";
     }
 };
 
-// Adds a book to library
 function addBook(title, author, pubDate, read) {
     const newBook = new Book(title, author, pubDate, read);
     myLibrary.push(newBook);
+}
+
+function removeBook() {
+
 }
 
 function displayBooks() {
@@ -78,6 +87,31 @@ function displayBooks() {
             }
         }
 
+        let lastRow = document.createElement("div");
+        lastRow.classList.add("lastRow");
+        card.appendChild(lastRow);
+
+        let changeRead = document.createElement("button");
+        changeRead.setAttribute("type", "button");
+        changeRead.setAttribute("id", "toggle-read");
+        if (book.read === "read") {
+            changeRead.innerHTML = "unread";
+        } else if (book.read === "not read") {
+            changeRead.innerHTML = "read";
+        }
+
+        changeRead.addEventListener("click", function() {
+            book.toggleRead();
+        });
+
+        lastRow.appendChild(changeRead);
+
+        let removeBtn = document.createElement("button");
+        removeBtn.setAttribute("type", "button");
+        removeBtn.setAttribute("id", "remove");
+        removeBtn.innerHTML = "remove book";
+        lastRow.appendChild(removeBtn);
+
         grid.appendChild(card);
 
     });
@@ -101,7 +135,7 @@ newBookButton.addEventListener('click', function() {
     dialog.classList.add("dialog");
 });
 
-submitBtn.addEventListener('click', function(e) {
+submitBtn.addEventListener('click', function() {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pubDate = document.getElementById("pubDate").value;
