@@ -7,31 +7,32 @@
     <link rel="stylesheet" href="styles.css">
     <script src="library.js" defer></script>
 </head>
-<body>
+<body id="body">
     <h1 class="page-title">Library</h1>
-    <button class="new-book">New Book</button>
-    <form action="" method="" class="newbookform">
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title">
-        </div>
-        <div>
-            <label for="author">Author</label>
-            <input type="text" id="author">
-        </div>
-        <div>
-            <label for="pubDate">Release</label>
-            <input type="text" id="pubDate">
-        </div>
-        <div>
-            <label for="read">Read</label>
-            <input type="radio" id="read" name="read-status" value="read">
-            
-            <label for="not-read">Not Read</label>
-            <input type="radio" id="not-read" name="read-status" value="not read">
-        </div>
-
-        <button type="submit">Submit</button>
-    </form>
+    <button class="new-book" id="new-book">New Book</button>
+    <dialog id="dialog">
+        <form class="newbookform">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title">
+            </div>
+            <div>
+                <label for="author">Author</label>
+                <input type="text" id="author">
+            </div>
+            <div>
+                <label for="pubDate">Release</label>
+                <input type="date" id="pubDate">
+            </div>
+            <div>
+                <label for="read">Read</label>
+                <input type="radio" id="read" name="read-status" value="read">
+        
+                <label for="not-read">Not Read</label>
+                <input type="radio" id="not-read" name="read-status" value="not read">
+            </div>
+            <button type="button" id="submit-button" value="submit">Submit</button>
+        </form>
+    </dialog>
 </body>
 </html>

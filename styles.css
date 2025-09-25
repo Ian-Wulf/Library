@@ -20,6 +20,12 @@ body {
     height: 2rem;
 }
 
+.dialog {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
 .newbookform {
     border: 1px solid black;
     padding: 1rem;

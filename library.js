@@ -14,7 +14,7 @@ function Book(title, author, pubDate, read) {
 
 // Toggle 'read' status of a book
 Book.prototype.toggleRead = function() {
-    if(this.read = "read") {
+    if(this.read === "read") {
         this.read = "not read";
     } else {
         this.read = "read";
@@ -28,10 +28,16 @@ function addBook(title, author, pubDate, read) {
 }
 
 function displayBooks() {
-    // Container for book display
-    let grid = document.createElement("div");
-    grid.classList.add("grid");
-    body.appendChild(grid);
+    let grid = document.querySelector(".grid");
+    // Establishes initial card display
+    if (!grid) {
+        grid = document.createElement("div");
+        grid.classList.add("grid");
+        body.appendChild(grid);
+    }
+
+    grid.innerHTML = "";
+    
     // Add books
     myLibrary.forEach(function(book) {
         // console.log(book)
@@ -47,21 +53,21 @@ function displayBooks() {
                 value.innerHTML = `${book[key]}`; 
                 switch (key) {
                     case "title":
-                        property.setAttribute("id","title");
-                        value.setAttribute("id","title-value");
+                        property.classList.add("title");
+                        value.classList.add("title-value");
                         break;
                     case "author":
-                        property.setAttribute("id","author");
-                        value.setAttribute("id","author-value");
+                        property.classList.add("author");
+                        value.classList.add("author-value");
                         break;
                     case "pubDate":
-                        property.setAttribute("id","pubDate");
+                        property.classList.add("pubDate");
                         property.innerHTML = "RELEASE:"
-                        value.setAttribute("id","pubDate-value");
+                        value.classList.add("pubDate-value");
                         break;
                     case "read":
-                        property.setAttribute("id","read");
-                        value.setAttribute("id","read-value");
+                        property.classList.add("read");
+                        value.classList.add("read-value");
                         value.innerHTML = value.innerHTML.toUpperCase();
                         break;
                 }
@@ -84,8 +90,35 @@ addBook("Ender's Game",'Orson Scott Card','01-15-1985','read');
 
 displayBooks();
 
-const newBookButton = document.querySelector(".new-book");
+const newBookButton = document.getElementById("new-book");
+const dialog = document.getElementById("dialog");
+const submitBtn = document.getElementById("submit-button");
+
+
 
 newBookButton.addEventListener('click', function() {
-    
+    dialog.showModal();
+    dialog.classList.add("dialog");
+});
+
+submitBtn.addEventListener('click', function(e) {
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pubDate = document.getElementById("pubDate").value;
+
+    const read = document.getElementById("read");
+    const notRead = document.getElementById("not-read");
+    let readStatus = "";
+
+    if (read.checked) {
+        readStatus = "read";
+    } else if (notRead.checked) {
+        readStatus = "not-read";
+    } 
+
+    addBook(title, author, pubDate, readStatus);
+    displayBooks();
+
+    dialog.close();
+    dialog.classList.remove("dialog");
 });
