@@ -1,3 +1,11 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/roboto-v49-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,19 +13,33 @@
 }
 
 body {
-    padding: 1rem;
+    font-family: 'Roboto';
     display: grid;
     grid-template-rows: 3rem 3rem 5fr;
     gap: 1rem;
     justify-items: center;
-
+    padding: 1rem;
+    background-image: url(/images/library.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
 }
+
 
 .new-book {
     font-size: large;
+    background-color: bisque;
+    border: none;
     border-radius: 5px;
     padding: 0rem 1rem;
-    height: 2rem;
+    height: 3rem;
+    box-shadow: 1px 3px 3px rgb(58, 57, 57);
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    align-items: center;
 }
 
 .dialog {
@@ -53,7 +75,7 @@ body {
     padding: 1rem;
     display: grid; 
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 0.5fr));
     overflow-y: auto;
 }
 
@@ -62,7 +84,7 @@ body {
     background-color: beige;
     border-radius: 5px;
     box-shadow: 1px 3px 3px rgb(58, 57, 57);
-    padding: 1.5rem 0.8rem;
+    padding: 1.5rem 1.5rem;
 
 
     display: grid;
@@ -71,21 +93,42 @@ body {
     align-items: center;
 }
 
-.bookCard div {
+.info {
     display: grid;
     grid-template-columns: 5rem 5fr;
-    gap: 1rem;
 }
 
-.bookCard div p:first-child {
+.info p:first-child {
     justify-self: start;
+    font-weight: bold;
 }
 
-.bookCard div p:nth-child(2) {
+.info p:nth-child(2) {
+    color: rgb(80, 79, 79);
     padding-left: 0.5rem;
 }
 
 .lastRow {
     display: grid;
+    gap: 1rem;
     grid-template-columns: 1fr 1fr;
+}
+
+.lastRow button {
+    font-family: 'Roboto';
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(117, 115, 115);
+    background-color:bisque;
+    padding: 0.5em 0rem;
+    width: 60%;
+}
+
+#toggle-read {
+
+}
+
+#remove {
+    justify-self: end;
 }

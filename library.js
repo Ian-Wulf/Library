@@ -51,6 +51,7 @@ function displayBooks() {
         for(const key in book) {
             if(book.hasOwnProperty(key) && key !== "id") {
                 let info = document.createElement("div");
+                info.classList.add("info");
                 let property = document.createElement("p");
                 let value = document.createElement("p");
 
@@ -90,6 +91,7 @@ function displayBooks() {
         let changeRead = document.createElement("button");
         changeRead.setAttribute("type", "button");
         changeRead.setAttribute("id", "toggle-read");
+
         if (book.read === "read") {
             changeRead.innerHTML = "unread";
         } else if (book.read === "not read") {
