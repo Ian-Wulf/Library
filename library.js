@@ -21,21 +21,27 @@ Book.prototype.toggleRead = function() {
     }
 };
 
-function correctDateFormat(date) {
-    
+// Checks date format
+function checkDateFormat(date) {
+    // If matches yyyy-mm-dd, then returns true
+    return date.match(/(\d\d\d\d)\-([0-1]\d)\-([0-3]\d)/);
 }
 
 function reformatDate(date) {
-  
-  const month = date.substring(5, 7);
-  const day = date.substring(8);
-  const year = date.substring(0, 4);
+    // If incorrect date, reformats
+    if (checkDateFormat(date)) {
+    const month = date.substring(5, 7);
+    const day = date.substring(8);
+    const year = date.substring(0, 4);
 
-  return `${month}-${day}-${year}`;
+    return `${month}-${day}-${year}`;
+    }
+
+    return date;
 }
 
 function addBook(title, author, pubDate, read) {
-    const newBook = new Book(title, author, pubDate, read);
+    const newBook = new Book(title, author, reformatDate(pubDate), read);
     myLibrary.push(newBook);
 }
 
