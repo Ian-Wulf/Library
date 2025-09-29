@@ -150,12 +150,19 @@ displayBooks();
 const newBookButton = document.getElementById("new-book");
 const dialog = document.getElementById("dialog");
 const submitBtn = document.getElementById("submit-button");
-
-
+const closeBtn = document.getElementById("close-button");
 
 newBookButton.addEventListener('click', function() {
-    dialog.showModal();
     dialog.classList.add("dialog");
+    dialog.showModal();
+});
+
+closeBtn.addEventListener('click', function() {
+    let form = document.querySelector(".newbookform");
+    
+    dialog.close();
+    dialog.classList.remove("dialog");
+    form.reset();
 });
 
 submitBtn.addEventListener('click', function() {
@@ -182,3 +189,4 @@ submitBtn.addEventListener('click', function() {
     dialog.classList.remove("dialog");
     form.reset();
 });
+

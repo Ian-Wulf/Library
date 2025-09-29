@@ -43,17 +43,24 @@ body {
 }
 
 .dialog {
-    display: flex;
     justify-self: center;
     align-self: center;
+    justify-content: center;
+    width: 250px;
+
+    background-color: beige;
+    border: none;
+    border-left: 1rem solid rgb(97, 75, 14);
+    border-radius: 10px;
 }
 
 .newbookform {
-    border: 1px solid black;
     padding: 1rem;
-    display: grid;
+    display: grid
+;
     gap: 1rem;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: 0.5rem repeat(5, 1fr);
+    border: none;
 }
 
 .newbookform div:nth-child(1), 
@@ -61,6 +68,7 @@ body {
 .newbookform div:nth-child(3) {
     display: grid;
     gap: 0.3rem;
+
 }
 
 .newbookform div:nth-child(4) {
@@ -68,6 +76,35 @@ body {
     justify-content: space-around;
     align-items: center;
 
+}
+
+#close-button {
+    font-family: Arial, Helvetica, sans-serif;
+    all: unset;
+    justify-self: end;
+}
+
+#close-button:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+#title, #author, #pubDate {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0.2rem 0.5rem;
+}
+
+#submit-button {
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(117, 115, 115);
+    background-color:rgb(235, 203, 164);
+    padding: 0.5em 0rem;
+    width: 10rem;
+
+    justify-self: center;
 }
 
 .grid {
@@ -123,10 +160,6 @@ body {
     background-color:bisque;
     padding: 0.5em 0rem;
     width: 60%;
-}
-
-#toggle-read {
-
 }
 
 #remove {
