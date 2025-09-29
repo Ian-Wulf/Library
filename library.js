@@ -21,6 +21,19 @@ Book.prototype.toggleRead = function() {
     }
 };
 
+function correctDateFormat(date) {
+    
+}
+
+function reformatDate(date) {
+  
+  const month = date.substring(5, 7);
+  const day = date.substring(8);
+  const year = date.substring(0, 4);
+
+  return `${month}-${day}-${year}`;
+}
+
 function addBook(title, author, pubDate, read) {
     const newBook = new Book(title, author, pubDate, read);
     myLibrary.push(newBook);
